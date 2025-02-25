@@ -8,4 +8,6 @@ AMainGameMode::AMainGameMode()
 {
 
 	DefaultPawnClass = AMainPlayer::StaticClass();
+
+
 }

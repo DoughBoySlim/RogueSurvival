@@ -4,7 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "MainPlayer.generated.h"
+
 
 UCLASS()
 class ROGUESURVIVAL_API AMainPlayer : public ACharacter
@@ -31,6 +34,12 @@ protected:
 	FVector ClickLocation;
 
 	FVector PlayerLocation;
+
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* CameraComponent;
+
+	UPROPERTY(VisibleAnywhere)
+	USpringArmComponent* SpringArmComponent;
 
 public:	
 	// Called every frame

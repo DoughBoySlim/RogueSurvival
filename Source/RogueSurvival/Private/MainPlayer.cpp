@@ -2,6 +2,8 @@
 
 
 #include "MainPlayer.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 
 // Setting Up the Movement of the characters
 void AMainPlayer::OnMoveToClick()
@@ -28,6 +30,16 @@ AMainPlayer::AMainPlayer()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	// Creating the Camera
+	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraArm"));
+	SpringArmComponent->SetupAttachment(RootComponent);
+	SpringArmComponent->TargetArmLength = 1000.0f;
+	SpringArmComponent->bUsePawnControlRotation = false;
+	SpringArmComponent->SetWorldRotation(FRotator(-60.0f, 0.0f, 0.0f));
+
+	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	CameraComponent->SetupAttachment(SpringArmComponent);
 
 }
 
