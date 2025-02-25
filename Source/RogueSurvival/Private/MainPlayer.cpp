@@ -3,6 +3,7 @@
 
 #include "MainPlayer.h"
 #include "Camera/CameraComponent.h"
+#include "Components/StaticMeshComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
 // Setting Up the Movement of the characters
@@ -40,6 +41,10 @@ AMainPlayer::AMainPlayer()
 
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraComponent->SetupAttachment(SpringArmComponent);
+
+	// Attaching the Static Mesh to the Player
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> PlayerBodyMesh(TEXT("StaticMesh'/Game/Fab/Human_body_base__cartoon_/SM_mainPlayerBody.SM_mainPlayerBody'"));
+	if (PlayerBodyMesh.Succeeded()) { StaticMeshComponent->SetStaticMesh(PlayerBodyMesh.Object); }
 
 }
 
